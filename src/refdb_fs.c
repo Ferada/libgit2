@@ -1562,6 +1562,9 @@ static int create_new_reflog_file(const char *filepath)
 
 GIT_INLINE(int) retrieve_reflog_path(git_buf *path, git_repository *repo, const char *name)
 {
+	if (repo->path_repository == NULL)
+		return -1;
+
 	return git_buf_join3(path, '/', repo->path_repository, GIT_REFLOG_DIR, name);
 }
 
